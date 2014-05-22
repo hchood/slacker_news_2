@@ -1,39 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Slacker News</title>
 
-    <link rel="stylesheet" href="styles.css">
-  </head>
+<table>
+  <thead>
+    <tr>
+      <th><img src="/hn_logo.gif"></th>
+      <td>Hacker News | new | comments | ask | jobs | submit</td>
+      <td>login</td>
+    </tr>
+  </thead>
 
-  <body>
-    <table>
-      <thead>
-        <tr>
-          <th><img src="/hn_logo.gif"></th>
-          <td>Hacker News | new | comments | ask | jobs | submit</td>
-          <td>login</td>
-        </tr>
-      </thead>
+  <tbody>
+    <% @articles.each_with_index do |article, i| %>
+      <tr>
+        <td><%= "#{i + 1}." %></td>
+        <td>
+          <a href=""><%= article[:title]%></a>
+          <%= "(#{article[:url]})" %>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <%= "#{article[:points]} points by #{article[:posted_by]} at #{article[:time_posted]} | #{article[:comments]} comments" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-      <tbody>
-        <% @articles.each_with_index do |article, i| %>
-          <tr>
-            <td><%= "#{i + 1}." %></td>
-            <td>
-              <a href=""><%= article[:title]%></a>
-              <%= "(#{article[:url]})" %>
-            </td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>
-              <%= "#{article[:points]} points by #{article[:posted_by]} at #{article[:time_posted]} | #{article[:comments]} comments" %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </body>
-</html>
