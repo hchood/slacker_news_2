@@ -3,22 +3,22 @@
 <form action="/articles" method="post">
   <div>
     <label>Title</label>
-    <input name="title">
+    <input name="title" value="<%= params[:title] %>">
   </div>
 
   <div>
     <label>URL</label>
-    <input name="url">
+    <input name="url" value="<%= params[:url] %>">
   </div>
 
   <div>
     <label>Description</label>
-    <input name="description">
+    <input name="description" value="<%= params[:description] %>">
   </div>
 
   <div>
     <label>Posted by</label>
-    <input name="user_name">
+    <input name="user_name" value="<%= params[:user_name] %>">
   </div>
 
   <div>
