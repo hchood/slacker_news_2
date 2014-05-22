@@ -24,3 +24,7 @@ get '/articles' do
   @articles = read_articles_from('articles.csv')
   erb :index
 end
+
+get '/articles/new' do
+  erb :new
+end
