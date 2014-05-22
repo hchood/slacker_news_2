@@ -9,7 +9,13 @@
 
   <body>
     <div>
-      <%= flash[:error] %>
+      <% if !flash[:error].nil? %>
+        <ul>
+          <% flash[:error].each do |error| %>
+            <li><%= error %></li>
+          <% end %>
+        </ul>
+      <% end %>
     </div>
 
     <%= yield %>

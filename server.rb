@@ -31,11 +31,27 @@ def write_article_to(file, article_attributes)
 end
 
 def missing_attributes?(params)
-  params[:title].nil? || params[:description].nil? || params[:url].nil?
+  params[:title].empty? || params[:description].empty? || params[:url].empty?
 end
 
 def invalid?(url)
   !url.start_with?('http://') || !url.match(/[.]\d{2,}\z/)
+end
+
+def errors(params)
+  errors = []
+
+  if missing_attributes?(params)
+    error = "You must supply a title, URL, and description."
+    errors << error
+  end
+
+  if invalid?(params[:url])
+    error = "You must supply a valid URL (starting with 'http://')."
+    errors << error
+  end
+
+  errors
 end
 
 get '/articles' do
@@ -48,8 +64,9 @@ get '/articles/new' do
 end
 
 post '/articles' do
-  if missing_attributes?(params) || invalid?(params[:url])
-    flash.now[:error] = "ERROR!!"
+  errors = errors(params)
+  if !errors.empty?
+    flash.now[:error] = errors
     erb :new
   else
     article_attributes = [params[:title], params[:description], params[:url], 0, params[:user_name], Time.new, 0]
