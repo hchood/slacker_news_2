@@ -11,7 +11,7 @@ def read_articles_from(file)
       description: row["description"],
       url: row["url"],
       points: row["points"],
-      posted_by: row["posted_by"],
+      posted_by: row["posted_by"] || "anonymous",
       time_posted: row["time_posted"],
       comments: row["comments"]
     }
