@@ -1,4 +1,4 @@
-title,description,url,points,time_posted,comments
-Ember!,I heart ember,ember.com,500,2014-05-22 9:32:02 -0400,3
-Angular,Angular is better than ember,angularrox.com,40,2014-05-22 10:54:10 -0400,5
-Rails4lyfe,I still love rails,rails4lyfe.com,73,2014-05-22 8:19:47 -0400,0
+title,description,url,points,posted_by,time_posted,comments
+Ember!,I heart ember,ember.com,500,heroiceric,2014-05-22 9:32:02 -0400,3
+Angular,Angular is better than ember,angularrox.com,40,dpickett,2014-05-22 10:54:10 -0400,5
+Rails4lyfe,I still love rails,rails4lyfe.com,73,atsheehan,2014-05-22 8:19:47 -0400,0

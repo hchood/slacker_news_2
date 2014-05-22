@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'csv'
 
 def read_articles_from(file)
   articles = []
@@ -9,6 +10,7 @@ def read_articles_from(file)
       description: row["description"],
       url: row["url"],
       points: row["points"],
+      posted_by: row["posted_by"],
       time_posted: row["time_posted"],
       comments: row["comments"]
     }
