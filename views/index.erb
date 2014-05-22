@@ -13,8 +13,9 @@
       <tr>
         <td><%= "#{i + 1}." %></td>
         <td>
-          <a href="http://www.<%= article[:url] %>" target="_blank"><%= article[:title]%></a>
-          <%= "(#{article[:url]})" %>
+          <a href="/articles/<%= article[:title]%>"><%= article[:title]%></a>
+          <a href="<%= article[:url] %>" target="_blank"><%= "(#{article[:url]})" %></a>
+
         </td>
       </tr>
       <tr>

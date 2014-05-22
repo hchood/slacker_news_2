@@ -36,6 +36,19 @@ def write_article_to(file, article_attributes)
   end
 end
 
+def find_article(title)
+  articles = read_articles_from('articles.csv')
+  article = {}
+
+  i = 0
+  while article.empty?
+    article = articles[i] if articles[i][:title] == title
+    i += 1
+  end
+
+  article
+end
+
 # validate form input
 
 def missing_attributes?(params)
@@ -79,6 +92,11 @@ end
 
 get '/articles/new' do
   erb :new
+end
+
+get '/articles/:title' do
+  @article = find_article(params[:title])
+  erb :show
 end
 
 post '/articles' do
