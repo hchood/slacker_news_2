@@ -5,6 +5,12 @@ require 'sinatra/flash'
 
 enable :sessions
 
+################################
+#         METHODS
+################################
+
+# read from and write to CSV
+
 def read_articles_from(file)
   articles = []
 
@@ -30,6 +36,8 @@ def write_article_to(file, article_attributes)
   end
 end
 
+# validate form input
+
 def missing_attributes?(params)
   params[:title].empty? || params[:description].empty? || params[:url].empty?
 end
@@ -54,6 +62,10 @@ def errors(params)
   errors
 end
 
+################################
+#         ROUTES
+################################
+
 get '/articles' do
   @articles = read_articles_from('articles.csv')
   erb :index
@@ -65,7 +77,7 @@ end
 
 post '/articles' do
   errors = errors(params)
-  binding.pry
+
   if !errors.empty?
     flash.now[:error] = errors
     erb :new
