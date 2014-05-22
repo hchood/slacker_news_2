@@ -46,17 +46,23 @@ def invalid?(url)
   !url.start_with?('http://') || !url.match(/[.][a-z]{2,}\z/i)
 end
 
+def too_short?(description)
+  description.length < 20
+end
+
 def errors(params)
   errors = []
 
   if missing_attributes?(params)
-    error = "You must supply a title, URL, and description."
-    errors << error
+    errors << "You must supply a title, URL, and description."
   end
 
   if invalid?(params[:url])
-    error = "You must supply a valid URL (starting with 'http://')."
-    errors << error
+    errors << "You must supply a valid URL (starting with 'http://')."
+  end
+
+  if too_short?(params[:description])
+    errors << "Your description must be at least 20 characters long."
   end
 
   errors
