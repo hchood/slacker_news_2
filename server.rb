@@ -35,7 +35,7 @@ def missing_attributes?(params)
 end
 
 def invalid?(url)
-  !url.start_with?('http://') || !url.match(/[.]\d{2,}\z/)
+  !url.start_with?('http://') || !url.match(/[.][a-z]{2,}\z/i)
 end
 
 def errors(params)
@@ -65,6 +65,7 @@ end
 
 post '/articles' do
   errors = errors(params)
+  binding.pry
   if !errors.empty?
     flash.now[:error] = errors
     erb :new
