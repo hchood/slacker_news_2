@@ -37,7 +37,7 @@ get '/articles/new' do
 end
 
 post '/articles' do
-  article_attributes = [params[:title], params[:description], params[:url], 0, nil, Time.new, 0]
+  article_attributes = [params[:title], params[:description], params[:url], 0, params[:user_name], Time.new, 0]
   write_article_to('articles.csv', article_attributes)
   redirect '/articles'
 end
