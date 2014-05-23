@@ -1,9 +1,6 @@
 require 'sinatra'
 require 'csv'
 require 'pry'
-require 'sinatra/flash'
-
-enable :sessions
 
 ################################
 #         METHODS
@@ -63,24 +60,6 @@ def too_short?(description)
   description.length < 20
 end
 
-def errors(params)
-  errors = []
-
-  if missing_attributes?(params)
-    errors << "You must supply a title, URL, and description."
-  end
-
-  if invalid?(params[:url])
-    errors << "You must supply a valid URL (starting with 'http://')."
-  end
-
-  if too_short?(params[:description])
-    errors << "Your description must be at least 20 characters long."
-  end
-
-  errors
-end
-
 ################################
 #         ROUTES
 ################################
@@ -100,14 +79,7 @@ get '/articles/:title' do
 end
 
 post '/articles' do
-  errors = errors(params)
-
-  if !errors.empty?
-    flash.now[:error] = errors
-    erb :new
-  else
-    article_attributes = [params[:title], params[:description], params[:url], 0, params[:user_name], Time.new, 0]
-    write_article_to('articles.csv', article_attributes)
-    redirect '/articles'
-  end
+  article_attributes = [params[:title], params[:description], params[:url], 0, params[:user_name], Time.new, 0]
+  write_article_to('articles.csv', article_attributes)
+  redirect '/articles'
 end
